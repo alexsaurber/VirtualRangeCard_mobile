@@ -1,0 +1,363 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="VirtualRangeCard_mobile.MainPage"
+             BackgroundColor="Black">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Label">
+                <Setter Property="TextColor" Value="White"/>
+                <Setter Property="FontAttributes" Value="Bold"/>
+                <Setter Property="FontFamily" Value="Roboto"/>
+                <Setter Property="FontSize" Value="18"/>
+                <Setter Property="HorizontalOptions" Value="End"/>
+                <Setter Property="VerticalOptions" Value="Center"/>
+                <Setter Property="Padding" Value="0,0,10,0"/>
+            </Style>
+            <Style TargetType="Label" x:Key="HeaderFont">
+                <Setter Property="TextColor" Value="White"/>
+                <Setter Property="FontAttributes" Value="Bold"/>
+                <Setter Property="FontFamily" Value="Roboto"/>
+                <Setter Property="FontSize" Value="24"/>
+                <Setter Property="HorizontalOptions" Value="Center"/>
+                <Setter Property="VerticalOptions" Value="Start"/>
+                <Setter Property="Padding" Value="0"/>
+            </Style>
+            <Style TargetType="Entry">
+                <Setter Property="Margin" Value="0"/>
+                <Setter Property="FontSize" Value="18"/>
+                <Setter Property="HorizontalTextAlignment" Value="Center"/>
+                <Setter Property="WidthRequest" Value="75"/>
+                <Setter Property="MaxLength" Value="6"/>
+                <Setter Property="TextColor" Value="White"/>
+                <Setter Property="FontAttributes" Value="Bold"/>
+                <Setter Property="Keyboard" Value="Numeric"/>
+            </Style>
+            <Style TargetType="Frame" x:Key="BlockFrame">
+                <Setter Property="BackgroundColor" Value="#203C5F"/>
+                <Setter Property="CornerRadius" Value="5"/>
+            </Style>
+            <Style TargetType="Frame" x:Key="TitleBlockFrame">
+                <Setter Property="BackgroundColor" Value="#203C5F"/>
+                <Setter Property="CornerRadius" Value="5"/>
+                <Setter Property="Padding" Value="0"/>
+            </Style>
+            <Style TargetType="Frame" x:Key="OuterFrame">
+                <Setter Property="BackgroundColor" Value="White"/>
+                <Setter Property="CornerRadius" Value="8"/>
+                <Setter Property="Padding" Value="3"/>
+            </Style>
+            <Style TargetType="Frame" x:Key="InnerFrame">
+                <Setter Property="BackgroundColor" Value="Black"/>
+                <Setter Property="CornerRadius" Value="5"/>
+                <Setter Property="Padding" Value="0"/>
+            </Style>
+            <Style TargetType="Button">
+                <Setter Property="CornerRadius" Value="8"/>
+                <Setter Property="FontSize" Value="18"/>
+                <Setter Property="FontFamily" Value="Roboto"/>
+                <Setter Property="FontAttributes" Value="Bold"/>
+                <Setter Property="TextColor" Value="White"/>
+                <Setter Property="BackgroundColor" Value="Black"/>
+                <Setter Property="BorderColor" Value="White"/>
+                <Setter Property="BorderWidth" Value="3"/>
+            </Style>
+            <Style TargetType="RadioButton">
+                <Setter Property="TextColor" Value="White"/>
+                <Setter Property="BackgroundColor" Value="#203C5F"/>
+                <Setter Property="FontAttributes" Value="Bold"/>
+                <Setter Property="WidthRequest" Value="80"/>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ScrollView>
+        <StackLayout>
+            <!-- Gun Selection -->
+            <Frame Style="{StaticResource OuterFrame}">
+                <Frame BackgroundColor="#203C5F" CornerRadius="5">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="5"/>
+                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width=".70*"/>
+                            <ColumnDefinition Width="5"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                        </Grid.RowDefinitions>
+                        <Frame Style="{StaticResource OuterFrame}" Grid.ColumnSpan="4" Grid.Row="0" Margin="-30,-25,-30,0">
+                            <!-- Frame Style="{StaticResource OuterFrame}" Grid.ColumnSpan="4" Grid.Row="0" Margin="-30,-25,-30,0"-->
+                            <Frame Style="{StaticResource TitleBlockFrame}">
+                                <Label Text="Gun Selection" Style="{StaticResource HeaderFont}" Padding="0"/>
+                            </Frame>
+                        </Frame>
+                        <Label x:Name="comboxtext" Text="" Grid.Column="1" Grid.Row="1" Margin="0, 0, 0, -13"/>
+                        <Frame Grid.Column="2" Grid.Row="1" CornerRadius="8" Padding="3" Margin="0, 0, 0, -13">
+                            <Frame Style="{StaticResource InnerFrame}">
+                                <Picker x:Name="guntypebox" TextColor="White" FontSize="18" HorizontalTextAlignment="Center" SelectedIndexChanged="guntypebox_SelectionChanged"/>
+                            </Frame>
+                        </Frame>
+                    </Grid>
+                </Frame>
+            </Frame>
+
+            <!-- Gun Position Block -->
+            <Frame Style="{StaticResource OuterFrame}">
+                <Frame Style="{StaticResource BlockFrame}">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="5"/>
+                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width=".70*"/>
+                            <ColumnDefinition Width="5"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height=".15*"/>
+                            <RowDefinition Height=".15*"/>
+                            <RowDefinition Height=".11*"/>
+                        </Grid.RowDefinitions>
+
+                        <Frame Style="{StaticResource OuterFrame}" Grid.ColumnSpan="4" Grid.Row="0" Margin="-30,-25,-30,0">
+                            <Frame Style="{StaticResource TitleBlockFrame}">
+                                <Label Text="Gun Position" Style="{StaticResource HeaderFont}" Grid.ColumnSpan="4" Grid.Row="0"/>
+                            </Frame>
+                        </Frame>
+                        <Label Text="Grid Westing/Easting" Grid.Column="1" Grid.Row="1"/>
+                        <Frame Grid.Column="2" Grid.Row="1" Style="{StaticResource OuterFrame}">
+                            <Frame Style="{StaticResource InnerFrame}">
+                                <Entry x:Name="gungridWE"/>
+                            </Frame>
+                        </Frame>
+
+                        <Label Text="Grid Northing/Southing" Grid.Column="1" Grid.Row="2"/>
+                        <Frame Grid.Column="2" Grid.Row="2" Style="{StaticResource OuterFrame}">
+                            <Frame Style="{StaticResource InnerFrame}">
+                                <Entry x:Name="gungridNS"/>
+                            </Frame>
+                        </Frame>
+
+                        <Label Text="Height MSL (m)" Grid.Column="1" Grid.Row="3" Margin="0, 0, 0, -13"/>
+                        <Frame Grid.Column="2" Grid.Row="3" Style="{StaticResource OuterFrame}" Margin="0, 0, 0, -13">
+                            <Frame Style="{StaticResource InnerFrame}">
+                                <Entry x:Name="gungridASL"/>
+                            </Frame>
+                        </Frame>
+
+                    </Grid>
+                </Frame>
+            </Frame>
+
+            <!-- Target Position Block -->
+            <Frame Style="{StaticResource OuterFrame}">
+                <Frame Style="{StaticResource BlockFrame}">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="5"/>
+                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width=".70*"/>
+                            <ColumnDefinition Width="5"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height=".15*"/>
+                            <RowDefinition Height=".15*"/>
+                            <RowDefinition Height=".11*"/>
+                        </Grid.RowDefinitions>
+
+
+                        <Frame Style="{StaticResource OuterFrame}" Grid.ColumnSpan="4" Grid.Row="0" Margin="-30,-25,-30,0">
+                            <Frame Style="{StaticResource TitleBlockFrame}">
+                                <Label Text="Target Position" Style="{StaticResource HeaderFont}" Grid.ColumnSpan="4" Grid.Row="0"/>
+                            </Frame>
+                        </Frame>
+                        <Label Text="Grid Westing/Easting" Grid.Column="1" Grid.Row="1"/>
+                        <Frame Grid.Column="2" Grid.Row="1" Style="{StaticResource OuterFrame}">
+                            <Frame Style="{StaticResource InnerFrame}">
+                                <Entry x:Name="targetgridWE"/>
+
+                            </Frame>
+                        </Frame>
+
+                        <Label Text="Grid Northing/Southing" Grid.Column="1" Grid.Row="2"/>
+                        <Frame Grid.Column="2" Grid.Row="2" Style="{StaticResource OuterFrame}">
+                            <Frame Style="{StaticResource InnerFrame}">
+                                <Entry x:Name="targetgridNS"/>
+                            </Frame>
+                        </Frame>
+
+                        <Label Text="Height MSL (m)" Grid.Column="1" Grid.Row="3" Margin="0, 0, 0, -13"/>
+                        <Frame Grid.Column="2" Grid.Row="3" Style="{StaticResource OuterFrame}" Margin="0, 0, 0, -13">
+                            <Frame Style="{StaticResource InnerFrame}">
+                                <Entry x:Name="targetgridASL"/>
+                            </Frame>
+                        </Frame>
+
+                    </Grid>
+                </Frame>
+            </Frame>
+
+            <!-- Calculate/Clear Buttons -->
+            <Frame Style="{StaticResource OuterFrame}">
+                <Frame Style="{StaticResource BlockFrame}" Padding="0">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="5"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="5"/>
+                            <ColumnDefinition Width=".8*"/>
+                            <ColumnDefinition Width="5"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="5"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="5"/>
+                        </Grid.RowDefinitions>
+
+                        <Button x:Name="calculatebutton" Text="CALCULATE" Grid.Row="1" Grid.Column="1" Clicked="calculatebutton_Click"/>
+                        <Button x:Name="clearbutton" Text="CLEAR" Grid.Row="1" Grid.Column="3" Clicked="clearbutton_Click"/>
+                    </Grid>
+                </Frame>
+            </Frame>
+
+            <!-- Adjustment of Fire Block -->
+            <Frame Style="{StaticResource OuterFrame}" BackgroundColor="#FFFF3864">
+                <Frame Style="{StaticResource BlockFrame}">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="5"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width=".7*"/>
+                            <ColumnDefinition Width="5"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height=".15*"/>
+                            <RowDefinition Height=".15*"/>
+                            <RowDefinition Height=".15*"/>
+                            <RowDefinition Height=".11*"/>
+                        </Grid.RowDefinitions>
+
+
+                        <Frame Style="{StaticResource OuterFrame}" Grid.ColumnSpan="4" Grid.Row="0" Margin="-30,-25,-30,0" BackgroundColor="#FFFF3864">
+                            <Frame Style="{StaticResource TitleBlockFrame}">
+                                <Label Text="Adjustment of Fire" Style="{StaticResource HeaderFont}" Grid.ColumnSpan="4" Grid.Row="0"/>
+                            </Frame>
+                        </Frame>
+                        <Label Text="Observer Azimuth (mils)" Grid.Column="1" Grid.Row="1" Margin="-10,0,0,0"/>
+                        <Frame Grid.Column="2" Grid.Row="1" Style="{StaticResource OuterFrame}" BackgroundColor="#FFFF3864">
+                            <Frame Style="{StaticResource InnerFrame}">
+                                <Entry x:Name="targetBearing"/>
+
+                            </Frame>
+                        </Frame>
+
+                        <StackLayout Grid.Row="2" Grid.Column="1" Orientation="Horizontal" HorizontalOptions="End" Margin="-15,0,0,0">
+                            <RadioButton x:Name="artyLeft" Content="Left"/>
+                            <RadioButton x:Name="artyRight" Content="Right"/>
+                            <Label Text="(m)"/>
+                        </StackLayout>
+                        <Frame Grid.Column="2" Grid.Row="2" Style="{StaticResource OuterFrame}" BackgroundColor="#FFFF3864">
+                            <Frame Style="{StaticResource InnerFrame}">
+                                <Entry x:Name="adjustLRbox"/>
+                            </Frame>
+                        </Frame>
+
+                        <StackLayout Grid.Row="3" Grid.Column="1" Orientation="Horizontal" HorizontalOptions="End" Margin="-15,0,0,0">
+                            <RadioButton x:Name="artyUp" Content="Up"/>
+                            <RadioButton x:Name="artyDown" Content="Down"/>
+                            <Label Text="(m)"/>
+                        </StackLayout>
+                        <Frame Grid.Column="2" Grid.Row="3" Style="{StaticResource OuterFrame}" BackgroundColor="#FFFF3864">
+                            <Frame Style="{StaticResource InnerFrame}">
+                                <Entry x:Name="adjustUDbox"/>
+                            </Frame>
+                        </Frame>
+
+                        <Button Text="ADJUST FIRE" Grid.Column="0" Grid.ColumnSpan="4" Grid.Row="4" Margin="0,0,0,-13" BorderColor="#FFFF3864" Clicked="adjustfirebutton_Click"/>
+                    </Grid>
+                </Frame>
+            </Frame>
+
+            <!-- Artillery Solution Block -->
+            <Frame Style="{StaticResource OuterFrame}" BackgroundColor="#FFFF6C11">
+                <Frame Style="{StaticResource BlockFrame}">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="5"/>
+                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width=".70*"/>
+                            <ColumnDefinition Width="5"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height=".15*"/>
+                            <RowDefinition Height=".15*"/>
+                            <RowDefinition Height=".15*"/>
+                            <RowDefinition Height=".15*"/>
+                            <RowDefinition Height=".15*"/>
+                            <RowDefinition Height=".11*"/>
+                        </Grid.RowDefinitions>
+
+
+                        <Frame Style="{StaticResource OuterFrame}" Grid.ColumnSpan="4" Grid.Row="0" Margin="-30,-25,-30,0" BackgroundColor="#FFFF6C11">
+                            <Frame Style="{StaticResource TitleBlockFrame}">
+                                <Label Text="Artillery Solution" Style="{StaticResource HeaderFont}" Grid.ColumnSpan="4" Grid.Row="0" />
+                            </Frame>
+                        </Frame>
+
+                        <Label Text="Charge" Grid.Column="1" Grid.Row="1"/>
+                        <Frame Grid.Column="2" Grid.Row="1" Style="{StaticResource OuterFrame}" BackgroundColor="#FFFF6C11">
+                            <Frame Style="{StaticResource InnerFrame}">
+                                <Entry x:Name="solutionCharge" IsReadOnly="True"/>
+                            </Frame>
+                        </Frame>
+
+                        <Label Text="Azimuth (mils)" Grid.Column="1" Grid.Row="2"/>
+                        <Frame Grid.Column="2" Grid.Row="2" Style="{StaticResource OuterFrame}" BackgroundColor="#FFFF6C11">
+                            <Frame Style="{StaticResource InnerFrame}">
+                                <Entry x:Name="solutionAzimuth" IsReadOnly="True"/>
+                            </Frame>
+                        </Frame>
+
+                        <Label Text="Elevation (mils)" Grid.Column="1" Grid.Row="3"/>
+                        <Frame Grid.Column="2" Grid.Row="3" Style="{StaticResource OuterFrame}" BackgroundColor="#FFFF6C11">
+                            <Frame Style="{StaticResource InnerFrame}">
+                                <Entry x:Name="solutionElevation" IsReadOnly="True"/>
+                            </Frame>
+                        </Frame>
+
+                        <Label Text="Time of Flight (s)" Grid.Column="1" Grid.Row="4"/>
+                        <Frame Grid.Column="2" Grid.Row="4" Style="{StaticResource OuterFrame}" BackgroundColor="#FFFF6C11">
+                            <Frame Style="{StaticResource InnerFrame}">
+                                <Entry x:Name="solutionTime" IsReadOnly="True"/>
+                            </Frame>
+                        </Frame>
+
+                        <Label Text="Range (m)" Grid.Column="1" Grid.Row="5"/>
+                        <Frame Grid.Column="2" Grid.Row="5" Style="{StaticResource OuterFrame}" BackgroundColor="#FFFF6C11">
+                            <Frame Style="{StaticResource InnerFrame}">
+                                <Entry x:Name="solutionRange" IsReadOnly="True"/>
+                            </Frame>
+                        </Frame>
+
+                        <Label Text="Bearing (deg)" Grid.Column="1" Grid.Row="6" Margin="0, 0, 0, -13"/>
+                        <Frame Grid.Column="2" Grid.Row="6" Style="{StaticResource OuterFrame}" Margin="0, 0, 0, -13" BackgroundColor="#FFFF6C11">
+                            <Frame Style="{StaticResource InnerFrame}">
+                                <Entry x:Name="solutionBearing" IsReadOnly="True"/>
+                            </Frame>
+                        </Frame>
+
+                    </Grid>
+                </Frame>
+            </Frame>
+
+
+
+
+        </StackLayout>
+    </ScrollView>
+</ContentPage>
+
